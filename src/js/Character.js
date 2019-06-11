@@ -48,13 +48,10 @@ export function Character(name, type) {
 * @throws {error} in case of points <= 0
 */
 Character.prototype.damage = function (points) {
-  try {
-    if (points <= 0) {
-      throw `Введено значение points ${points}. Значение должно быть > 0`;
-    }
-    this.health -= (points * (1 - this.defense / 100));
-  } catch (err) {
+  if (points <= 0) {
     // eslint-disable-next-line no-console
-    console.log(err);
+    console.log(`Введено значение points ${points}. Значение должно быть > 0`);
+    return;
   }
+  this.health -= (points * (1 - this.defense / 100));
 };
